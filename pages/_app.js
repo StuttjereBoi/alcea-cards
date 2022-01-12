@@ -1,3 +1,4 @@
+import '../fontawesome/css/all.min.css'
 import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }) {

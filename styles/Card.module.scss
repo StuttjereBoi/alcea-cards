@@ -1,27 +1,101 @@
 
+@mixin button-reverse-color($background, $color) {
+  background: $background;
+  color: $color;
+  &:hover {
+    background: $color;
+    color: $background;
+  }
+}
+
+@mixin card-order($amount, $spacing) {
+  width: calc((100% - #{$spacing * $amount - 1}em) / #{$amount});
+  margin-left: #{$spacing}em;
+  &:nth-child(#{$amount}n + 1) { margin-left: 0; }
+  &:nth-child(1n+#{$amount + 1}) { margin-top: #{$spacing}em; }
+}
+
 .card {
-  background: #60b390;
-  padding: 1em;
-  width: calc((100% - 2em) / 3);
-  img {
+  position: relative;
+  @include card-order(6, 1);
+  height: 25em;
+  background: white;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+  border-radius: .5em;
+  .cardCover {
+    border-radius: inherit;
+    position: relative;
     width: 100%;
-    height: 20em;
-    object-fit: cover;
+    height: 100%;
+    img {
+      border-radius: inherit;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    &::after {
+      border-radius: inherit;
+      content: '';
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 50%;
+      background: linear-gradient(0deg, #000000 0%, rgba(0, 0, 0, 0) 100%);
+    }
   }
-  h1.name {
-    margin: unset;
-    font-size: 1.5em;
+  .cardData {
+    position: absolute;
+    box-sizing: border-box;
+    bottom: 1em;
+    left: 1em;
+    width: calc(100% - 2em);
+    overflow: hidden;
+    .cardTitle {
+      margin: unset;
+      font-weight: 500;
+      font-size: 1.5em;
+      color: white;
+    }
+    .cardSeries {
+      padding: unset;
+      margin: .25em 0 0 0;
+      border: unset;
+      border-radius: unset;
+      display: block;
+      background: unset;
+      color: white;
+      font-size: 1em;
+      &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
   }
-  a.series {
-    text-decoration: none;
-    &:hover { text-decoration: underline; }
+  .cardActions {
+    transition: opacity .25s;
+    opacity: 0;
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    display: flex;
+    flex-direction: column;
+    .cardAction {
+      cursor: pointer;
+      font-size: 1em;
+      height: 2.5em;
+      width: 2.5em;
+      &:nth-child(1n+2) { margin-top: .675em; }
+      box-shadow: 0 .1em .25em rgba(0, 0, 0, 0.5);
+      border: unset;
+      border-radius: 100em;
+      &:nth-child(1) { @include button-reverse-color(white, #DC5252)}
+      &:nth-child(2) { @include button-reverse-color(white, #5383BC)}
+    }
   }
-  button {
-    width: 100%;
-    background: lighten(#60b390, 25%);
-    cursor: pointer;
+  &:hover {
+    .cardActions {
+      opacity: 1;
+    }
   }
-  margin-left: 1em;
-  &:nth-child(1n+4) { margin-top: 1em; }
-  &:nth-child(3n+1) { margin-left: 0; }
 }
