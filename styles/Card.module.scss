@@ -1,4 +1,10 @@
 
+@mixin half() {
+  @media screen and (max-width: 1440px) {
+    @content;
+  }
+}
+
 @mixin button-reverse-color($background, $color) {
   background: $background;
   color: $color;
@@ -18,6 +24,9 @@
 .card {
   position: relative;
   @include card-order(6, 1);
+  @include half {
+    @include card-order(3, 1);
+  }
   height: 25em;
   background: white;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
@@ -27,12 +36,16 @@
     position: relative;
     width: 100%;
     height: 100%;
+    overflow: hidden;
     img {
       border-radius: inherit;
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
+      &[data-married='false'] {
+        filter: grayscale(100%) blur(.25em);
+      }
     }
     &::after {
       border-radius: inherit;
@@ -89,8 +102,9 @@
       box-shadow: 0 .1em .25em rgba(0, 0, 0, 0.5);
       border: unset;
       border-radius: 100em;
-      &:nth-child(1) { @include button-reverse-color(white, #DC5252)}
-      &:nth-child(2) { @include button-reverse-color(white, #5383BC)}
+      &.cardDelete { @include button-reverse-color(white, #DC5252) }
+      &.cardEdit { @include button-reverse-color(white, #4258d8) }
+      &.cardMarry { @include button-reverse-color(white, #e4be42) }
     }
   }
   &:hover {

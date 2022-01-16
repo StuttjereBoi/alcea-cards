@@ -1,0 +1,39 @@
+// dialog {
+//   width: 50%;
+//   display: block;
+//   border: unset;
+//   border-radius: .5em;
+//   background: white;
+//   padding: 1.75em;
+//   h2 {
+//     font-size: 1.5em;
+//     margin: 0 0 1em 0;
+//   }
+// }
+
+.lbl {
+  font-size: 1em;
+  font-variant: small-caps;
+}
+
+.inputText {
+  font-size: 1em;
+  padding: .5em;
+  width: 100%;
+}
+
+.formBtn {
+  display: inline;
+  border: 0;
+  background: #006eff;
+  font-size: 1em;
+  font-weight: 500;
+  color: white;
+  text-transform: uppercase;
+  padding: .75em 2em;
+  border-radius: 100em;
+  cursor: pointer;
+  &:hover {
+    background: darken(#006eff, 10%);
+  }
+}

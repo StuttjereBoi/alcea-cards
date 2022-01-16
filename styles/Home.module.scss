@@ -1,7 +1,35 @@
 
-.list {
-  display: flex;
-  flex-wrap: wrap;
+.container {
   width: 90%;
-  margin: 4em auto;
+  margin: 0 auto;
+}
+
+.btn {
+  padding: 1em 2em;
+  font-size: 1.25em;
+  font-weight: 600;
+  color: white;
+  background: #006eff;
+  border: unset;
+  border-radius: 500em;
+  cursor: pointer;
+  &:hover {
+    background: darken(#006eff, 10%);
+  }
+}
+
+.pageBtn {
+  margin: 2em;
+  display: block;
+  background: #006eff;
+  height: 2em;
+  width: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 500em;
+  color: white;
+  &:hover {
+    background: darken(#006eff, 10%);
+  }
 }
